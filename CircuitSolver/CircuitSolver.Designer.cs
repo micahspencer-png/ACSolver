@@ -34,9 +34,9 @@
             // 
             // ImagePictureBox
             // 
-            this.ImagePictureBox.Location = new System.Drawing.Point(32, 47);
+            this.ImagePictureBox.Location = new System.Drawing.Point(12, 21);
             this.ImagePictureBox.Name = "ImagePictureBox";
-            this.ImagePictureBox.Size = new System.Drawing.Size(761, 432);
+            this.ImagePictureBox.Size = new System.Drawing.Size(882, 518);
             this.ImagePictureBox.TabIndex = 0;
             this.ImagePictureBox.TabStop = false;
             // 
@@ -44,8 +44,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(906, 551);
+            this.ClientSize = new System.Drawing.Size(1235, 543);
             this.Controls.Add(this.ImagePictureBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "CircuitSolver";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
