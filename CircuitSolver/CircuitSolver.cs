@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,20 @@ namespace CircuitSolver
         public CircuitSolver()
         {
             InitializeComponent();
+            DrawImage();
+        }
+        //Program Logic------------------------------------------------------------------------------------------------
+
+        void DrawImage() 
+        {
+            ImagePictureBox.BackgroundImage = Image.FromFile(ACPath);
+            ImagePictureBox.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
+        //Event Handlers-----------------------------------------------------------------------------------------------
         private void CircuitSolver_Load(object sender, EventArgs e)
         {
-            this.BackgroundImage = Image.FromFile(ACPath);
+            DrawImage();
         }
     }
 }
