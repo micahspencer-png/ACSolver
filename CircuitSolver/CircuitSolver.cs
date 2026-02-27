@@ -19,10 +19,13 @@ namespace CircuitSolver
     public partial class CircuitSolver : Form
     {
         string ACPath = "..\\..\\..\\AC-SeriesParallel.png";
+        int ohm = \u03A9;
+        string Ohm = char.ConvertFromUtf32(ohm);
         public CircuitSolver()
         {
             InitializeComponent();
             DrawImage();
+            AddItems();
         }
         //Program Logic------------------------------------------------------------------------------------------------
         void SetDefaults() 
@@ -32,7 +35,9 @@ namespace CircuitSolver
 
         void AddItems()
         {
-
+            RGenComboBox.Items.Clear();
+            RGenComboBox.Items.Add("50");
+            RGenComboBox.Items.Add("400");
         }
 
         void DrawImage() 
@@ -83,7 +88,15 @@ namespace CircuitSolver
             catch 
             {
                 VGenTextBox.BackColor= Color.PaleVioletRed;
-                MessageBox.Show("Check Input. It has to be whole numbers between 0-10");
+                if (VGenTextBox.Text == "")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("Check Input. It has to be whole numbers between 0-10");
+                    VGenTextBox.Clear();
+                }
             }
         }
 
@@ -94,13 +107,16 @@ namespace CircuitSolver
                 int Hz = int.Parse(FrequencyTextBox.Text);
                 if (Hz > 1000000) 
                 {
+
                     FrequencyTextBox.BackColor = Color.PaleVioletRed;
                     MessageBox.Show("Check Input. It has to be whole numbers between 1-1,000,000");
+                    FrequencyTextBox.Clear();
                 }
                 else if (Hz < 0) 
                 {
                     FrequencyTextBox.BackColor = Color.PaleVioletRed;
                     MessageBox.Show("Check Input. It has to be whole numbers between 1-1,000,000");
+                    FrequencyTextBox.Clear();
                 }
                 else 
                 {
@@ -110,7 +126,15 @@ namespace CircuitSolver
             catch 
             {
                 FrequencyTextBox.BackColor= Color.PaleVioletRed;
-                MessageBox.Show("Check Input. It has to be whole numbers between 1-1,000,000");
+                if (FrequencyTextBox.Text == "")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("Check Input. It has to be whole numbers between 1-1,000,000");
+                    FrequencyTextBox.Clear();
+                }
             }
         }
     }
