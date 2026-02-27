@@ -25,11 +25,26 @@ namespace CircuitSolver
             DrawImage();
         }
         //Program Logic------------------------------------------------------------------------------------------------
+        void SetDefaults() 
+        {
+        
+        }
+
+        void AddItems()
+        {
+
+        }
 
         void DrawImage() 
         {
             ImagePictureBox.BackgroundImage = Image.FromFile(ACPath);
             ImagePictureBox.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+
+        void DisplayResults()
+        {
+
         }
 
         //Event Handlers-----------------------------------------------------------------------------------------------
@@ -45,62 +60,58 @@ namespace CircuitSolver
 
         private void SolveButton_Click(object sender, EventArgs e)
         {
-
+            DisplayResults();
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-
+            SetDefaults();
         }
 
-        private void PolarRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void VGenTrackBar_Scroll(object sender, EventArgs e)
         {
-
+            VGenTextBox.Text = VGenTrackBar.Value.ToString();
         }
 
-        private void RGenComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void VGenTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            try 
+            {
+                VGenTrackBar.Value = int.Parse(VGenTextBox.Text);
+                VGenTextBox.BackColor = Color.White;
+            }
+            catch 
+            {
+                VGenTextBox.BackColor= Color.PaleVioletRed;
+                MessageBox.Show("Check Input. It has to be whole numbers between 0-10");
+            }
         }
 
-        private void R1ValueComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void FrequencyTextBox_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void R1PrefixComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void C1ValueComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void C1PrefixComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void C2ValueComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void C2PrefixComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void L1ValueComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void L1PrefixComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            try 
+            {
+                int Hz = int.Parse(FrequencyTextBox.Text);
+                if (Hz > 1000000) 
+                {
+                    FrequencyTextBox.BackColor = Color.PaleVioletRed;
+                    MessageBox.Show("Check Input. It has to be whole numbers between 1-1,000,000");
+                }
+                else if (Hz < 0) 
+                {
+                    FrequencyTextBox.BackColor = Color.PaleVioletRed;
+                    MessageBox.Show("Check Input. It has to be whole numbers between 1-1,000,000");
+                }
+                else 
+                {
+                    FrequencyTextBox.BackColor = Color.White;
+                }
+            }
+            catch 
+            {
+                FrequencyTextBox.BackColor= Color.PaleVioletRed;
+                MessageBox.Show("Check Input. It has to be whole numbers between 1-1,000,000");
+            }
         }
     }
 }

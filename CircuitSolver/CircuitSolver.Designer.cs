@@ -72,7 +72,7 @@
             this.VGenTrackBar.Name = "VGenTrackBar";
             this.VGenTrackBar.Size = new System.Drawing.Size(286, 56);
             this.VGenTrackBar.TabIndex = 1;
-            this.VGenTrackBar.Value = 5;
+            this.VGenTrackBar.Scroll += new System.EventHandler(this.VGenTrackBar_Scroll);
             // 
             // ExitButton
             // 
@@ -111,14 +111,16 @@
             this.VGenTextBox.Name = "VGenTextBox";
             this.VGenTextBox.Size = new System.Drawing.Size(64, 30);
             this.VGenTextBox.TabIndex = 3;
+            this.VGenTextBox.TextChanged += new System.EventHandler(this.VGenTextBox_TextChanged);
             // 
             // FrequencyTextBox
             // 
             this.FrequencyTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FrequencyTextBox.Location = new System.Drawing.Point(125, 535);
+            this.FrequencyTextBox.Location = new System.Drawing.Point(168, 532);
             this.FrequencyTextBox.Name = "FrequencyTextBox";
             this.FrequencyTextBox.Size = new System.Drawing.Size(126, 30);
             this.FrequencyTextBox.TabIndex = 3;
+            this.FrequencyTextBox.TextChanged += new System.EventHandler(this.FrequencyTextBox_TextChanged);
             // 
             // VGenLabel
             // 
@@ -136,9 +138,9 @@
             this.FrequencyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FrequencyLabel.Location = new System.Drawing.Point(14, 535);
             this.FrequencyLabel.Name = "FrequencyLabel";
-            this.FrequencyLabel.Size = new System.Drawing.Size(105, 25);
+            this.FrequencyLabel.Size = new System.Drawing.Size(148, 25);
             this.FrequencyLabel.TabIndex = 4;
-            this.FrequencyLabel.Text = "Frequency";
+            this.FrequencyLabel.Text = "Frequency (Hz)";
             // 
             // RGenComboBox
             // 
@@ -148,7 +150,6 @@
             this.RGenComboBox.Name = "RGenComboBox";
             this.RGenComboBox.Size = new System.Drawing.Size(64, 33);
             this.RGenComboBox.TabIndex = 5;
-            this.RGenComboBox.SelectedIndexChanged += new System.EventHandler(this.RGenComboBox_SelectedIndexChanged);
             // 
             // RGenLabel
             // 
@@ -168,7 +169,6 @@
             this.R1ValueComboBox.Name = "R1ValueComboBox";
             this.R1ValueComboBox.Size = new System.Drawing.Size(145, 33);
             this.R1ValueComboBox.TabIndex = 5;
-            this.R1ValueComboBox.SelectedIndexChanged += new System.EventHandler(this.R1ValueComboBox_SelectedIndexChanged);
             // 
             // C1ValueComboBox
             // 
@@ -178,7 +178,6 @@
             this.C1ValueComboBox.Name = "C1ValueComboBox";
             this.C1ValueComboBox.Size = new System.Drawing.Size(145, 33);
             this.C1ValueComboBox.TabIndex = 5;
-            this.C1ValueComboBox.SelectedIndexChanged += new System.EventHandler(this.C1ValueComboBox_SelectedIndexChanged);
             // 
             // C2ValueComboBox
             // 
@@ -188,7 +187,6 @@
             this.C2ValueComboBox.Name = "C2ValueComboBox";
             this.C2ValueComboBox.Size = new System.Drawing.Size(145, 33);
             this.C2ValueComboBox.TabIndex = 5;
-            this.C2ValueComboBox.SelectedIndexChanged += new System.EventHandler(this.C2ValueComboBox_SelectedIndexChanged);
             // 
             // L1ValueComboBox
             // 
@@ -198,7 +196,6 @@
             this.L1ValueComboBox.Name = "L1ValueComboBox";
             this.L1ValueComboBox.Size = new System.Drawing.Size(145, 33);
             this.L1ValueComboBox.TabIndex = 5;
-            this.L1ValueComboBox.SelectedIndexChanged += new System.EventHandler(this.L1ValueComboBox_SelectedIndexChanged);
             // 
             // R1PrefixComboBox
             // 
@@ -208,7 +205,6 @@
             this.R1PrefixComboBox.Name = "R1PrefixComboBox";
             this.R1PrefixComboBox.Size = new System.Drawing.Size(68, 33);
             this.R1PrefixComboBox.TabIndex = 5;
-            this.R1PrefixComboBox.SelectedIndexChanged += new System.EventHandler(this.R1PrefixComboBox_SelectedIndexChanged);
             // 
             // C1PrefixComboBox
             // 
@@ -218,7 +214,6 @@
             this.C1PrefixComboBox.Name = "C1PrefixComboBox";
             this.C1PrefixComboBox.Size = new System.Drawing.Size(68, 33);
             this.C1PrefixComboBox.TabIndex = 5;
-            this.C1PrefixComboBox.SelectedIndexChanged += new System.EventHandler(this.C1PrefixComboBox_SelectedIndexChanged);
             // 
             // C2PrefixComboBox
             // 
@@ -228,7 +223,6 @@
             this.C2PrefixComboBox.Name = "C2PrefixComboBox";
             this.C2PrefixComboBox.Size = new System.Drawing.Size(68, 33);
             this.C2PrefixComboBox.TabIndex = 5;
-            this.C2PrefixComboBox.SelectedIndexChanged += new System.EventHandler(this.C2PrefixComboBox_SelectedIndexChanged);
             // 
             // L1PrefixComboBox
             // 
@@ -238,7 +232,6 @@
             this.L1PrefixComboBox.Name = "L1PrefixComboBox";
             this.L1PrefixComboBox.Size = new System.Drawing.Size(68, 33);
             this.L1PrefixComboBox.TabIndex = 5;
-            this.L1PrefixComboBox.SelectedIndexChanged += new System.EventHandler(this.L1PrefixComboBox_SelectedIndexChanged);
             // 
             // R1Label
             // 
@@ -291,7 +284,6 @@
             this.PolarRadioButton.TabStop = true;
             this.PolarRadioButton.Text = "Polar";
             this.PolarRadioButton.UseVisualStyleBackColor = true;
-            this.PolarRadioButton.CheckedChanged += new System.EventHandler(this.PolarRadioButton_CheckedChanged);
             // 
             // RectangularRadioButton
             // 
