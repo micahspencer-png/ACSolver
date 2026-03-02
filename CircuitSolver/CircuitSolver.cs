@@ -19,8 +19,13 @@ namespace CircuitSolver
     public partial class CircuitSolver : Form
     {
         string ACPath = "..\\..\\..\\AC-SeriesParallel.png";
-        int ohm = \u03A9;
-        string Ohm = char.ConvertFromUtf32(ohm);
+        string ohm = "\u03A9";
+        string micro = "\u00B5";
+        string angle = "\u2220";
+        string degree = "\u00B0";
+        string pi = "\u03C0";
+        string euler = "\u0065";
+        string infinity = "\u221E";
         public CircuitSolver()
         {
             InitializeComponent();
@@ -38,6 +43,10 @@ namespace CircuitSolver
             RGenComboBox.Items.Clear();
             RGenComboBox.Items.Add("50");
             RGenComboBox.Items.Add("400");
+            R1PrefixComboBox.Items.Clear();
+            R1PrefixComboBox.Items.Add($"{ohm}");
+            R1PrefixComboBox.Items.Add($"K{ohm}");
+            R1PrefixComboBox.Items.Add($"M{ohm}");
         }
 
         void DrawImage() 
