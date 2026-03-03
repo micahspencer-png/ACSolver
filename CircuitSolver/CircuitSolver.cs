@@ -35,11 +35,12 @@ namespace CircuitSolver
         //Program Logic------------------------------------------------------------------------------------------------
         void SetDefaults() 
         {
-        
+            
         }
 
         void AddItems()
         {
+            RWindinglabel2.Text = $"{ohm}";
             RGenComboBox.Items.Clear();
             RGenComboBox.Items.Add("50");
             RGenComboBox.Items.Add("400");
@@ -47,6 +48,17 @@ namespace CircuitSolver
             R1PrefixComboBox.Items.Add($"{ohm}");
             R1PrefixComboBox.Items.Add($"K{ohm}");
             R1PrefixComboBox.Items.Add($"M{ohm}");
+            C1PrefixComboBox.Items.Clear();
+            C1PrefixComboBox.Items.Add("pF");
+            C1PrefixComboBox.Items.Add($"{micro}F");
+            C2PrefixComboBox.Items.Clear();
+            C2PrefixComboBox.Items.Add("pF");
+            C2PrefixComboBox.Items.Add($"{micro}F");
+            L1PrefixComboBox.Items.Clear();
+            L1PrefixComboBox.Items.Add($"{micro}H");
+            L1PrefixComboBox.Items.Add("mH");
+            R1ValueComboBox.Items.Clear();
+            R1ValueComboBox.Items.Add($"{1*1}");
         }
 
         void DrawImage() 
@@ -55,10 +67,80 @@ namespace CircuitSolver
             ImagePictureBox.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
+        void ValidateInputs() 
+        {
+            bool Valid = true;
+
+            if (RGenComboBox.SelectedIndex == -1) 
+            {
+                Valid = false;
+            }
+            else if (R1ValueComboBox.SelectedIndex == -1)
+            {
+                Valid = false;
+            }
+            else if (R1PrefixComboBox.SelectedIndex == -1)
+            {
+                Valid = false;
+            }
+            else if (C1ValueComboBox.SelectedIndex == -1)
+            {
+                Valid = false;
+            }
+            else if (C1PrefixComboBox.SelectedIndex == -1)
+            {
+                Valid = false;
+            }
+            else if (C2ValueComboBox.SelectedIndex == -1)
+            {
+                Valid = false;
+            }
+            else if (C2PrefixComboBox.SelectedIndex == -1)
+            {
+                Valid = false;
+            }
+            else if (L1ValueComboBox.SelectedIndex == -1)
+            {
+                Valid = false;
+            }
+            else if (L1PrefixComboBox.SelectedIndex == -1)
+            {
+                Valid = false;
+            }
+            else if (FrequencyTextBox.Text == "")
+            {
+                Valid = false;
+            }
+            else if (RWindingTextBox.Text == "")
+            {
+                Valid = false;
+            }
+
+            if (!PolarRadioButton.Checked && !RectangularRadioButton.Checked)
+            {
+                Valid = false;
+            }
+
+            if (Valid == true)
+            {
+                DisplayResults();
+            }
+            else 
+            {
+                MessageBox.Show("Check Inputs. Make Sure All Values are Filled In");
+            }
+        }
 
         void DisplayResults()
         {
-
+            if (PolarRadioButton.Checked == true) 
+            { 
+                
+            }
+            else if (RectangularRadioButton.Checked == true) 
+            { 
+                
+            }
         }
 
         //Event Handlers-----------------------------------------------------------------------------------------------
@@ -74,7 +156,7 @@ namespace CircuitSolver
 
         private void SolveButton_Click(object sender, EventArgs e)
         {
-            DisplayResults();
+            ValidateInputs();
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -143,6 +225,44 @@ namespace CircuitSolver
                 {
                     MessageBox.Show("Check Input. It has to be whole numbers between 1-1,000,000");
                     FrequencyTextBox.Clear();
+                }
+            }
+        }
+
+        private void RWindingTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int Hz = int.Parse(RWindingTextBox.Text);
+                if (Hz > 1000)
+                {
+
+                    RWindingTextBox.BackColor = Color.PaleVioletRed;
+                    MessageBox.Show("Check Input. It has to be whole numbers between 0-1,000");
+                    RWindingTextBox.Clear();
+                }
+                else if (Hz < 0)
+                {
+                    RWindingTextBox.BackColor = Color.PaleVioletRed;
+                    MessageBox.Show("Check Input. It has to be whole numbers between 0-1,000");
+                    RWindingTextBox.Clear();
+                }
+                else
+                {
+                    RWindingTextBox.BackColor = Color.White;
+                }
+            }
+            catch
+            {
+                RWindingTextBox.BackColor = Color.PaleVioletRed;
+                if (RWindingTextBox.Text == "")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("Check Input. It has to be whole numbers between 0-1,000");
+                    RWindingTextBox.Clear();
                 }
             }
         }

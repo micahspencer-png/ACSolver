@@ -54,6 +54,10 @@
             this.PolarRadioButton = new System.Windows.Forms.RadioButton();
             this.RectangularRadioButton = new System.Windows.Forms.RadioButton();
             this.ResultsListBox = new System.Windows.Forms.ListBox();
+            this.RWindingLabel = new System.Windows.Forms.Label();
+            this.RWindingTextBox = new System.Windows.Forms.TextBox();
+            this.RWindinglabel2 = new System.Windows.Forms.Label();
+            this.Frequencylabel2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ImagePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VGenTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -116,7 +120,7 @@
             // FrequencyTextBox
             // 
             this.FrequencyTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FrequencyTextBox.Location = new System.Drawing.Point(168, 532);
+            this.FrequencyTextBox.Location = new System.Drawing.Point(118, 534);
             this.FrequencyTextBox.Name = "FrequencyTextBox";
             this.FrequencyTextBox.Size = new System.Drawing.Size(126, 30);
             this.FrequencyTextBox.TabIndex = 3;
@@ -136,11 +140,11 @@
             // 
             this.FrequencyLabel.AutoSize = true;
             this.FrequencyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FrequencyLabel.Location = new System.Drawing.Point(14, 535);
+            this.FrequencyLabel.Location = new System.Drawing.Point(7, 537);
             this.FrequencyLabel.Name = "FrequencyLabel";
-            this.FrequencyLabel.Size = new System.Drawing.Size(148, 25);
+            this.FrequencyLabel.Size = new System.Drawing.Size(105, 25);
             this.FrequencyLabel.TabIndex = 4;
-            this.FrequencyLabel.Text = "Frequency (Hz)";
+            this.FrequencyLabel.Text = "Frequency";
             // 
             // RGenComboBox
             // 
@@ -277,7 +281,7 @@
             // 
             this.PolarRadioButton.AutoSize = true;
             this.PolarRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PolarRadioButton.Location = new System.Drawing.Point(607, 408);
+            this.PolarRadioButton.Location = new System.Drawing.Point(610, 456);
             this.PolarRadioButton.Name = "PolarRadioButton";
             this.PolarRadioButton.Size = new System.Drawing.Size(78, 29);
             this.PolarRadioButton.TabIndex = 6;
@@ -289,7 +293,7 @@
             // 
             this.RectangularRadioButton.AutoSize = true;
             this.RectangularRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RectangularRadioButton.Location = new System.Drawing.Point(607, 434);
+            this.RectangularRadioButton.Location = new System.Drawing.Point(610, 482);
             this.RectangularRadioButton.Name = "RectangularRadioButton";
             this.RectangularRadioButton.Size = new System.Drawing.Size(137, 29);
             this.RectangularRadioButton.TabIndex = 7;
@@ -307,11 +311,53 @@
             this.ResultsListBox.Size = new System.Drawing.Size(395, 429);
             this.ResultsListBox.TabIndex = 8;
             // 
+            // RWindingLabel
+            // 
+            this.RWindingLabel.AutoSize = true;
+            this.RWindingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RWindingLabel.Location = new System.Drawing.Point(572, 415);
+            this.RWindingLabel.Name = "RWindingLabel";
+            this.RWindingLabel.Size = new System.Drawing.Size(102, 25);
+            this.RWindingLabel.TabIndex = 4;
+            this.RWindingLabel.Text = "R Winding";
+            // 
+            // RWindingTextBox
+            // 
+            this.RWindingTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RWindingTextBox.Location = new System.Drawing.Point(689, 415);
+            this.RWindingTextBox.Name = "RWindingTextBox";
+            this.RWindingTextBox.Size = new System.Drawing.Size(86, 30);
+            this.RWindingTextBox.TabIndex = 9;
+            this.RWindingTextBox.TextChanged += new System.EventHandler(this.RWindingTextBox_TextChanged);
+            // 
+            // RWindinglabel2
+            // 
+            this.RWindinglabel2.AutoSize = true;
+            this.RWindinglabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RWindinglabel2.Location = new System.Drawing.Point(781, 420);
+            this.RWindinglabel2.Name = "RWindinglabel2";
+            this.RWindinglabel2.Size = new System.Drawing.Size(64, 25);
+            this.RWindinglabel2.TabIndex = 10;
+            this.RWindinglabel2.Text = "label1";
+            // 
+            // Frequencylabel2
+            // 
+            this.Frequencylabel2.AutoSize = true;
+            this.Frequencylabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Frequencylabel2.Location = new System.Drawing.Point(250, 537);
+            this.Frequencylabel2.Name = "Frequencylabel2";
+            this.Frequencylabel2.Size = new System.Drawing.Size(36, 25);
+            this.Frequencylabel2.TabIndex = 11;
+            this.Frequencylabel2.Text = "Hz";
+            // 
             // CircuitSolver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1269, 583);
+            this.Controls.Add(this.Frequencylabel2);
+            this.Controls.Add(this.RWindinglabel2);
+            this.Controls.Add(this.RWindingTextBox);
             this.Controls.Add(this.ResultsListBox);
             this.Controls.Add(this.RectangularRadioButton);
             this.Controls.Add(this.PolarRadioButton);
@@ -336,6 +382,7 @@
             this.Controls.Add(this.C2abel);
             this.Controls.Add(this.FrequencyTextBox);
             this.Controls.Add(this.C1Label);
+            this.Controls.Add(this.RWindingLabel);
             this.Controls.Add(this.FrequencyLabel);
             this.Controls.Add(this.R1Label);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -380,6 +427,10 @@
         private System.Windows.Forms.RadioButton PolarRadioButton;
         private System.Windows.Forms.RadioButton RectangularRadioButton;
         private System.Windows.Forms.ListBox ResultsListBox;
+        private System.Windows.Forms.Label RWindingLabel;
+        private System.Windows.Forms.TextBox RWindingTextBox;
+        private System.Windows.Forms.Label RWindinglabel2;
+        private System.Windows.Forms.Label Frequencylabel2;
     }
 }
 
