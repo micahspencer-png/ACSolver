@@ -26,6 +26,7 @@ namespace CircuitSolver
         string pi = "\u03C0";
         string euler = "\u0065";
         string infinity = "\u221E";
+
         public CircuitSolver()
         {
             InitializeComponent();
@@ -46,6 +47,10 @@ namespace CircuitSolver
             C1PrefixComboBox.SelectedIndex = 1;
             C2PrefixComboBox.SelectedIndex = 1;
             L1PrefixComboBox.SelectedIndex = 1;
+            R1ValueComboBox.SelectedIndex = 0;
+            C1ValueComboBox.SelectedIndex = 0;
+            C2ValueComboBox.SelectedIndex = 0;
+            L1ValueComboBox.SelectedIndex = 0;
             RectangularRadioButton.Checked = true;
         }
 
@@ -138,20 +143,50 @@ namespace CircuitSolver
             }
             else 
             {
-                MessageBox.Show("Check Inputs. Make Sure All Values are Filled In");
+                MessageBox.Show("Check Inputs. Make Sure All Values are Filled In and Correct");
             }
         }
 
         void DisplayResults()
         {
+            Math();
+            ResultsListBox.Items.Clear();
+            ResultsListBox.Items.Add("Z total:");
+            ResultsListBox.Items.Add("I Total:");
+            ResultsListBox.Items.Add("R1:");
+            ResultsListBox.Items.Add("C1:");
+            ResultsListBox.Items.Add("C2:");
+            ResultsListBox.Items.Add("L1:");
+            ResultsListBox.Items.Add("XC1:");
+            ResultsListBox.Items.Add("XC2:");
+            ResultsListBox.Items.Add("XL1:");
+            ResultsListBox.Items.Add("ZL1:");
+            ResultsListBox.Items.Add("ZEQ:");
+            ResultsListBox.Items.Add("VRGen:");
+            ResultsListBox.Items.Add("VR1:");
+            ResultsListBox.Items.Add("VC1:");
+            ResultsListBox.Items.Add("VC2:");
+            ResultsListBox.Items.Add("VL1:");
+            ResultsListBox.Items.Add("IRGen:");
+            ResultsListBox.Items.Add("IR1:");
+            ResultsListBox.Items.Add("IC1:");
+            ResultsListBox.Items.Add("IC2:");
+            ResultsListBox.Items.Add("IL1:");
+            ResultsListBox.Items.Add("Real Power:");
+            ResultsListBox.Items.Add("Reactive Power:");
+            ResultsListBox.Items.Add("Apparent Power:");
+        }
+
+        void Math() 
+        {
             if (PolarRadioButton.Checked == true) 
-            { 
+            {
                 
             }
             else if (RectangularRadioButton.Checked == true) 
-            { 
+            {
                 
-            }
+            } 
         }
 
         //Event Handlers-----------------------------------------------------------------------------------------------
@@ -214,7 +249,7 @@ namespace CircuitSolver
                     MessageBox.Show("Check Input. It has to be whole numbers between 1-1,000,000");
                     FrequencyTextBox.Clear();
                 }
-                else if (Hz < 0) 
+                else if (Hz < 1) 
                 {
                     FrequencyTextBox.BackColor = Color.PaleVioletRed;
                     MessageBox.Show("Check Input. It has to be whole numbers between 1-1,000,000");
