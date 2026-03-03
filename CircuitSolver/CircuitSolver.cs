@@ -35,7 +35,18 @@ namespace CircuitSolver
         //Program Logic------------------------------------------------------------------------------------------------
         void SetDefaults() 
         {
-            
+            FrequencyTextBox.Clear();
+            FrequencyTextBox.Text = "1000";
+            VGenTextBox.Clear();
+            VGenTextBox.Text = "5";
+            RWindingTextBox.Clear();
+            RWindingTextBox.Text = "20";
+            RGenComboBox.SelectedIndex = 0;
+            R1PrefixComboBox.SelectedIndex = 0;
+            C1PrefixComboBox.SelectedIndex = 1;
+            C2PrefixComboBox.SelectedIndex = 1;
+            L1PrefixComboBox.SelectedIndex = 1;
+            RectangularRadioButton.Checked = true;
         }
 
         void AddItems()
