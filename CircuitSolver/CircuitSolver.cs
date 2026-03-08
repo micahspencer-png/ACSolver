@@ -462,18 +462,19 @@ namespace CircuitSolver
             ZeqL = Math.Sqrt(ZeqL);
             double Zeq = ZeqH / ZeqL;
             double AngZeqL = Math.Atan2((XL1-XC2),RW);
-            double AngZeq = (-45 + AngZl1)-AngZeqL;
+            double AngZeq = (-45*pi/180 + AngZl1)-AngZeqL;
             double RZeq = Zeq*Math.Cos(AngZeq);
             double IZeq = Zeq*Math.Sin(AngZeq);
             double RzTot = RGen + (R1 * PreR1) + RZeq;
-            double IzTot = XC1 + IZeq;
+            double IzTot = -XC1 + IZeq;
             double zTotA = (RzTot*RzTot) + (IzTot*IzTot);
+            zTotA = Math.Sqrt(zTotA);
             double Rigen = (V / zTotA)*Math.Cos(-Math.Atan2(IzTot, RzTot));
             double Iigen = (V / zTotA) * Math.Sin(-Math.Atan2(IzTot, RzTot));
             if (PolarRadioButton.Checked == true) 
             {
-                ztotal = $"{ToEngineering(zTotA ,o)}{angle}{Math.Atan2(IzTot,RzTot)}";
-                igen = $"{ToEngineering(V/zTotA, "A")}{angle}{-Math.Atan2(IzTot, RzTot)}";
+                ztotal = $"{ToEngineering(zTotA ,o)}{angle}{Math.Round(Math.Atan2(IzTot,RzTot) * 180 / pi, 3)}";
+                igen = $"{ToEngineering(V/zTotA, "A")}{angle}{Math.Round(-Math.Atan2(IzTot, RzTot) * 180 / pi, 3)}";
                 r1 = $"{ToEngineering(R1*PreR1, o)}{angle}0";
                 c1 = $"{ToEngineering(C1*PreC1, "F")}{angle}-45";
                 c2 = $"{ToEngineering(C2*PreC2, "F")}{angle}-45";
@@ -481,21 +482,21 @@ namespace CircuitSolver
                 xc1 = $"{ToEngineering(XC1, o)}{angle}-45";
                 xc2 = $"{ToEngineering(XC2, o)}{angle}-45";
                 xl1 = $"{ToEngineering(XL1, o)}{angle}45";
-                zl1 = $"{ToEngineering(Math.Sqrt(ZL1), o)}{angle}{Math.Atan2(XL1,RW)}";
-                zeq = $"{ToEngineering(Zeq, o)}{angle}{-AngZeqL}";
-                vrgen = $"{ToEngineering(RGen*V/zTotA, "V")}{angle}{-Math.Atan2(IzTot, RzTot)}";
-                vr1 = $"{ToEngineering(R1*PreR1*V/zTotA, "V")}{angle}{-Math.Atan2(IzTot, RzTot)}";
-                vc1 = $"{ToEngineering(XC1*V/zTotA, "V")}{angle}{-Math.Atan2(IzTot, RzTot)}";
-                vc2 = $"{ToEngineering(Zeq*V/zTotA, "V")}{angle}{-Math.Atan2(IzTot, RzTot)}";
-                vl1 = $"{ToEngineering(Zeq*V/zTotA, "V")}{angle}{-Math.Atan2(IzTot, RzTot)}";
-                irgen = $"{ToEngineering(V/zTotA, "A")}{angle}{-Math.Atan2(IzTot, RzTot)}";
-                ir1 = $"{ToEngineering(V/zTotA, "A")}{angle}{-Math.Atan2(IzTot, RzTot)}";
-                ic1 = $"{ToEngineering(V/zTotA, "A")}{angle}{-Math.Atan2(IzTot, RzTot)}";
-                ic2 = $"{ToEngineering(zTotA, "A")}";
-                il1 = $"{ToEngineering(zTotA, "A")}";
-                realP = $"{ToEngineering(zTotA, "W")}";
-                reactP = $"{ToEngineering(zTotA, "W")}";
-                apparentP = $"{ToEngineering(zTotA, "W")}";
+                zl1 = $"{ToEngineering(Math.Sqrt(ZL1), o)}{angle}{Math.Round(Math.Atan2(XL1,RW) * 180 / pi, 3)}";
+                zeq = $"{ToEngineering(Zeq, o)}{angle}{Math.Round(AngZeq * 180 / pi, 3)}";
+                vrgen = $"{ToEngineering(RGen*V/zTotA, "V")}{angle}{Math.Round(-Math.Atan2(IzTot, RzTot) * 180 / pi, 3)}";
+                vr1 = $"{ToEngineering(R1*PreR1*V/zTotA, "V")}{angle}{Math.Round(-Math.Atan2(IzTot, RzTot) * 180 / pi, 3)}";
+                vc1 = $"{ToEngineering(XC1*V/zTotA, "V")}{angle}{Math.Round(-Math.Atan2(IzTot, RzTot) * 180 / pi-45, 3)}";
+                vc2 = $"{ToEngineering(Zeq*V/zTotA, "V")}{angle}{Math.Round(-Math.Atan2(IzTot, RzTot) * 180 / pi-45, 3)}";
+                vl1 = $"{ToEngineering(Zeq*V/zTotA, "V")}{angle}{Math.Round(-Math.Atan2(IzTot, RzTot) * 180 / pi+AngZl1, 3)}";
+                irgen = $"{ToEngineering(V/zTotA, "A")}{angle}{Math.Round(-Math.Atan2(IzTot, RzTot) * 180 / pi, 3)}";
+                ir1 = $"{ToEngineering(V/zTotA, "A")}{angle}{Math.Round(-Math.Atan2(IzTot, RzTot) * 180 / pi, 3)}";
+                ic1 = $"{ToEngineering(V/zTotA, "A")}{angle}{Math.Round(-Math.Atan2(IzTot, RzTot) * 180 / pi - 45, 3)}";
+                ic2 = $"{ToEngineering(Zeq * V / zTotA/XC2, "A")}{angle}{Math.Round(-Math.Atan2(IzTot, RzTot) * 180 / pi -45, 3)}";
+                il1 = $"{ToEngineering(Zeq * V / zTotA/ZL1, "A")}{angle}{Math.Round(-Math.Atan2(IzTot, RzTot) * 180 / pi +AngZl1, 3)}";
+                realP = $"{ToEngineering(V/zTotA*V/zTotA *RzTot, "W")}";
+                reactP = $"{ToEngineering(V/zTotA*V/zTotA*IzTot, "VAR")}";
+                apparentP = $"{ToEngineering(V*V/zTotA, "VA")}";
             }
             else if (RectangularRadioButton.Checked == true) 
             {
