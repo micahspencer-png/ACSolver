@@ -26,7 +26,30 @@ namespace CircuitSolver
         string pi = "\u03C0";
         string euler = "\u0065";
         string infinity = "\u221E";
-
+        int ztotal = 0;
+        int igen = 0;
+        int r1 = 0;
+        int c1 = 0;
+        int c2 = 0;
+        int l1 = 0;
+        int xc1 = 0;
+        int xc2 = 0;
+        int xl1 = 0;
+        int zl1 = 0;
+        int zeq = 0;
+        int vrgen = 0;
+        int vr1 = 0;
+        int vc1 = 0;
+        int vc2 = 0;
+        int vl1 = 0;
+        int irgen = 0;
+        int ir1 = 0;
+        int ic1 = 0;
+        int ic2 = 0;
+        int il1 = 0;
+        int realP = 0;
+        int reactP = 0;
+        int apparentP = 0;
         public CircuitSolver()
         {
             InitializeComponent();
@@ -47,10 +70,10 @@ namespace CircuitSolver
             C1PrefixComboBox.SelectedIndex = 1;
             C2PrefixComboBox.SelectedIndex = 1;
             L1PrefixComboBox.SelectedIndex = 1;
-            R1ValueComboBox.SelectedIndex = 0;
-            C1ValueComboBox.SelectedIndex = 0;
-            C2ValueComboBox.SelectedIndex = 0;
-            L1ValueComboBox.SelectedIndex = 0;
+            R1ValueComboBox.SelectedIndex = 48;
+            C1ValueComboBox.SelectedIndex = 12;
+            C2ValueComboBox.SelectedIndex = 12;
+            L1ValueComboBox.SelectedIndex = 2;
             RectangularRadioButton.Checked = true;
         }
 
@@ -73,8 +96,162 @@ namespace CircuitSolver
             L1PrefixComboBox.Items.Clear();
             L1PrefixComboBox.Items.Add($"{micro}H");
             L1PrefixComboBox.Items.Add("mH");
+            
             R1ValueComboBox.Items.Clear();
-            R1ValueComboBox.Items.Add($"{1*1}");
+            R1ValueComboBox.Items.Add($"{1 * 1}");
+            R1ValueComboBox.Items.Add($"{1.1 * 1}");
+            R1ValueComboBox.Items.Add($"{1.2 * 1}");
+            R1ValueComboBox.Items.Add($"{1.3 * 1}");
+            R1ValueComboBox.Items.Add($"{1.5 * 1}");
+            R1ValueComboBox.Items.Add($"{1.6 * 1}");
+            R1ValueComboBox.Items.Add($"{1.8 * 1}");
+            R1ValueComboBox.Items.Add($"{2 * 1}");
+            R1ValueComboBox.Items.Add($"{2.2 * 1}");
+            R1ValueComboBox.Items.Add($"{2.4 * 1}");
+            R1ValueComboBox.Items.Add($"{2.7 * 1}");
+            R1ValueComboBox.Items.Add($"{3 * 1}");
+            R1ValueComboBox.Items.Add($"{3.3 * 1}");
+            R1ValueComboBox.Items.Add($"{3.6 * 1}");
+            R1ValueComboBox.Items.Add($"{3.9 * 1}");
+            R1ValueComboBox.Items.Add($"{4.3 * 1}");
+            R1ValueComboBox.Items.Add($"{4.7 * 1}");
+            R1ValueComboBox.Items.Add($"{5.1 * 1}");
+            R1ValueComboBox.Items.Add($"{5.6 * 1}");
+            R1ValueComboBox.Items.Add($"{6.2 * 1}");
+            R1ValueComboBox.Items.Add($"{6.8 * 1}");
+            R1ValueComboBox.Items.Add($"{7.5 * 1}");
+            R1ValueComboBox.Items.Add($"{8.2 * 1}");
+            R1ValueComboBox.Items.Add($"{9.1 * 1}");
+            R1ValueComboBox.Items.Add($"{1 * 10}");
+            R1ValueComboBox.Items.Add($"{1.1 * 10}");
+            R1ValueComboBox.Items.Add($"{1.2 * 10}");
+            R1ValueComboBox.Items.Add($"{1.3 * 10}");
+            R1ValueComboBox.Items.Add($"{1.5 * 10}");
+            R1ValueComboBox.Items.Add($"{1.6 * 10}");
+            R1ValueComboBox.Items.Add($"{1.8 * 10}");
+            R1ValueComboBox.Items.Add($"{2 * 10}");
+            R1ValueComboBox.Items.Add($"{2.2 * 10}");
+            R1ValueComboBox.Items.Add($"{2.4 * 10}");
+            R1ValueComboBox.Items.Add($"{2.7 * 10}");
+            R1ValueComboBox.Items.Add($"{3 * 10}");
+            R1ValueComboBox.Items.Add($"{3.3 * 10}");
+            R1ValueComboBox.Items.Add($"{3.6 * 10}");
+            R1ValueComboBox.Items.Add($"{3.9 * 10}");
+            R1ValueComboBox.Items.Add($"{4.3 * 10}");
+            R1ValueComboBox.Items.Add($"{4.7 * 10}");
+            R1ValueComboBox.Items.Add($"{5.1 * 10}");
+            R1ValueComboBox.Items.Add($"{5.6 * 10}");
+            R1ValueComboBox.Items.Add($"{6.2 * 10}");
+            R1ValueComboBox.Items.Add($"{6.8 * 10}");
+            R1ValueComboBox.Items.Add($"{7.5 * 10}");
+            R1ValueComboBox.Items.Add($"{8.2 * 10}");
+            R1ValueComboBox.Items.Add($"{9.1 * 10}");
+            R1ValueComboBox.Items.Add($"{1 * 100}");
+            R1ValueComboBox.Items.Add($"{1.1 * 100}");
+            R1ValueComboBox.Items.Add($"{1.2 * 100}");
+            R1ValueComboBox.Items.Add($"{1.3 * 100}");
+            R1ValueComboBox.Items.Add($"{1.5 * 100}");
+            R1ValueComboBox.Items.Add($"{1.6 * 100}");
+            R1ValueComboBox.Items.Add($"{1.8 * 100}");
+            R1ValueComboBox.Items.Add($"{2 * 100}");
+            R1ValueComboBox.Items.Add($"{2.2 * 100}");
+            R1ValueComboBox.Items.Add($"{2.4 * 100}");
+            R1ValueComboBox.Items.Add($"{2.7 * 100}");
+            R1ValueComboBox.Items.Add($"{3 * 100}");
+            R1ValueComboBox.Items.Add($"{3.3 * 100}");
+            R1ValueComboBox.Items.Add($"{3.6 * 100}");
+            R1ValueComboBox.Items.Add($"{3.9 * 100}");
+            R1ValueComboBox.Items.Add($"{4.3 * 100}");
+            R1ValueComboBox.Items.Add($"{4.7 * 100}");
+            R1ValueComboBox.Items.Add($"{5.1 * 100}");
+            R1ValueComboBox.Items.Add($"{5.6 * 100}");
+            R1ValueComboBox.Items.Add($"{6.2 * 100}");
+            R1ValueComboBox.Items.Add($"{6.8 * 100}");
+            R1ValueComboBox.Items.Add($"{7.5 * 100}");
+            R1ValueComboBox.Items.Add($"{8.2 * 100}");
+            R1ValueComboBox.Items.Add($"{9.1 * 100}");
+
+            C1ValueComboBox.Items.Add($"{0.01 * 1}");
+            C1ValueComboBox.Items.Add($"{0.02 * 1}");
+            C1ValueComboBox.Items.Add($"{0.022 * 1}");
+            C1ValueComboBox.Items.Add($"{0.025 * 1}");
+            C1ValueComboBox.Items.Add($"{0.033 * 1}");
+            C1ValueComboBox.Items.Add($"{0.047 * 1}");
+            C1ValueComboBox.Items.Add($"{0.068 * 1}");
+            C1ValueComboBox.Items.Add($"{0.01 * 10}");
+            C1ValueComboBox.Items.Add($"{0.02 * 10}");
+            C1ValueComboBox.Items.Add($"{0.033 * 10}");
+            C1ValueComboBox.Items.Add($"{0.047 * 10}");
+            C1ValueComboBox.Items.Add($"{0.5}");
+            C1ValueComboBox.Items.Add($"{0.01 * 100}");
+            C1ValueComboBox.Items.Add($"{0.033 * 100}");
+            C1ValueComboBox.Items.Add($"{0.047 * 100}");
+            C1ValueComboBox.Items.Add($"{0.01 * 1000}");
+            C1ValueComboBox.Items.Add($"{0.022 * 1000}");
+            C1ValueComboBox.Items.Add($"{0.033 * 1000}");
+            C1ValueComboBox.Items.Add($"{0.047 * 1000}");
+            C1ValueComboBox.Items.Add($"{0.01 * 10000}");
+            C1ValueComboBox.Items.Add($"{0.022 * 10000}");
+            C1ValueComboBox.Items.Add($"{0.033 * 10000}");
+            C1ValueComboBox.Items.Add($"{0.047 * 10000}");
+            C1ValueComboBox.Items.Add($"{0.01 * 100000}");
+            C1ValueComboBox.Items.Add($"{0.022 * 100000}");
+            C1ValueComboBox.Items.Add($"{0.033 * 100000}");
+            C1ValueComboBox.Items.Add($"{0.047 * 100000}");
+            C1ValueComboBox.Items.Add($"{68 * 1}");
+            C1ValueComboBox.Items.Add($"{68 * 10}");
+            C1ValueComboBox.Items.Add($"{68 * 100}");
+            C1ValueComboBox.Items.Add($"{15 * 1}");
+            C1ValueComboBox.Items.Add($"{15 * 10}");
+            C1ValueComboBox.Items.Add($"{15 * 100}");
+            C1ValueComboBox.Items.Add($"{180 * 1}");
+            C1ValueComboBox.Items.Add($"{180 * 10}");
+
+            C2ValueComboBox.Items.Add($"{0.01 * 1}");
+            C2ValueComboBox.Items.Add($"{0.02 * 1}");
+            C2ValueComboBox.Items.Add($"{0.022 * 1}");
+            C2ValueComboBox.Items.Add($"{0.025 * 1}");
+            C2ValueComboBox.Items.Add($"{0.033 * 1}");
+            C2ValueComboBox.Items.Add($"{0.047 * 1}");
+            C2ValueComboBox.Items.Add($"{0.068 * 1}");
+            C2ValueComboBox.Items.Add($"{0.01 * 10}");
+            C2ValueComboBox.Items.Add($"{0.02 * 10}");
+            C2ValueComboBox.Items.Add($"{0.033 * 10}");
+            C2ValueComboBox.Items.Add($"{0.047 * 10}");
+            C2ValueComboBox.Items.Add($"{0.5}");
+            C2ValueComboBox.Items.Add($"{0.01 * 100}");
+            C2ValueComboBox.Items.Add($"{0.033 * 100}");
+            C2ValueComboBox.Items.Add($"{0.047 * 100}");
+            C2ValueComboBox.Items.Add($"{0.01 * 1000}");
+            C2ValueComboBox.Items.Add($"{0.022 * 1000}");
+            C2ValueComboBox.Items.Add($"{0.033 * 1000}");
+            C2ValueComboBox.Items.Add($"{0.047 * 1000}");
+            C2ValueComboBox.Items.Add($"{0.01 * 10000}");
+            C2ValueComboBox.Items.Add($"{0.022 * 10000}");
+            C2ValueComboBox.Items.Add($"{0.033 * 10000}");
+            C2ValueComboBox.Items.Add($"{0.047 * 10000}");
+            C2ValueComboBox.Items.Add($"{0.01 * 100000}");
+            C2ValueComboBox.Items.Add($"{0.022 * 100000}");
+            C2ValueComboBox.Items.Add($"{0.033 * 100000}");
+            C2ValueComboBox.Items.Add($"{0.047 * 100000}");
+            C2ValueComboBox.Items.Add($"{68 * 1}");
+            C2ValueComboBox.Items.Add($"{68 * 10}");
+            C2ValueComboBox.Items.Add($"{68 * 100}");
+            C2ValueComboBox.Items.Add($"{15 * 1}");
+            C2ValueComboBox.Items.Add($"{15 * 10}");
+            C2ValueComboBox.Items.Add($"{15 * 100}");
+            C2ValueComboBox.Items.Add($"{180 * 1}");
+            C2ValueComboBox.Items.Add($"{180 * 10}");
+
+            L1ValueComboBox.Items.Add($"{1}");
+            L1ValueComboBox.Items.Add($"{5 * 1}");
+            L1ValueComboBox.Items.Add($"{10 * 1}");
+            L1ValueComboBox.Items.Add($"{27 * 1}");
+            L1ValueComboBox.Items.Add($"{68 * 1}");
+            L1ValueComboBox.Items.Add($"{100 * 1}");
+
+            C1ValueComboBox.Sorted = true;
+            C2ValueComboBox.Sorted = true;
         }
 
         void DrawImage() 
@@ -151,34 +328,58 @@ namespace CircuitSolver
         {
             Math();
             ResultsListBox.Items.Clear();
-            ResultsListBox.Items.Add("Z total:");
-            ResultsListBox.Items.Add("I Total:");
-            ResultsListBox.Items.Add("R1:");
-            ResultsListBox.Items.Add("C1:");
-            ResultsListBox.Items.Add("C2:");
-            ResultsListBox.Items.Add("L1:");
-            ResultsListBox.Items.Add("XC1:");
-            ResultsListBox.Items.Add("XC2:");
-            ResultsListBox.Items.Add("XL1:");
-            ResultsListBox.Items.Add("ZL1:");
-            ResultsListBox.Items.Add("ZEQ:");
-            ResultsListBox.Items.Add("VRGen:");
-            ResultsListBox.Items.Add("VR1:");
-            ResultsListBox.Items.Add("VC1:");
-            ResultsListBox.Items.Add("VC2:");
-            ResultsListBox.Items.Add("VL1:");
-            ResultsListBox.Items.Add("IRGen:");
-            ResultsListBox.Items.Add("IR1:");
-            ResultsListBox.Items.Add("IC1:");
-            ResultsListBox.Items.Add("IC2:");
-            ResultsListBox.Items.Add("IL1:");
-            ResultsListBox.Items.Add("Real Power:");
-            ResultsListBox.Items.Add("Reactive Power:");
-            ResultsListBox.Items.Add("Apparent Power:");
+            ResultsListBox.Items.Add($"Z total: {ztotal}");
+            ResultsListBox.Items.Add($"I Total: {igen}");
+            ResultsListBox.Items.Add($"R1: {r1}");
+            ResultsListBox.Items.Add($"C1: {c1}");
+            ResultsListBox.Items.Add($"C2: {c2}");
+            ResultsListBox.Items.Add($"L1: {l1}");
+            ResultsListBox.Items.Add($"XC1: {xc1}");
+            ResultsListBox.Items.Add($"XC2: {xc2}");
+            ResultsListBox.Items.Add($"XL1: {xl1}");
+            ResultsListBox.Items.Add($"ZL1: {zl1}");
+            ResultsListBox.Items.Add($"ZEQ: {zeq}");
+            ResultsListBox.Items.Add($"VRGen: {vrgen}");
+            ResultsListBox.Items.Add($"VR1: {vr1}");
+            ResultsListBox.Items.Add($"VC1: {vc1}");
+            ResultsListBox.Items.Add($"VC2: {vc2}");
+            ResultsListBox.Items.Add($"VL1: {vl1}");
+            ResultsListBox.Items.Add($"IRGen: {irgen}");
+            ResultsListBox.Items.Add($"IR1: {ir1}");
+            ResultsListBox.Items.Add($"IC1: {ic1}");
+            ResultsListBox.Items.Add($"IC2: {ic2}");
+            ResultsListBox.Items.Add($"IL1: {il1}");
+            ResultsListBox.Items.Add($"Real Power: {realP}");
+            ResultsListBox.Items.Add($"Reactive Power: {reactP}");
+            ResultsListBox.Items.Add($"Apparent Power: {apparentP}");
         }
 
         void Math() 
         {
+            int ztotal = 0;
+            int igen = 0;
+            int r1 = 0;
+            int c1 = 0;
+            int c2 = 0;
+            int l1 = 0;
+            int xc1 = 0;
+            int xc2 = 0;
+            int xl1 = 0;
+            int zl1 = 0;
+            int zeq = 0;
+            int vrgen = 0;
+            int vr1 = 0;
+            int vc1 = 0;
+            int vc2 = 0;
+            int vl1 = 0;
+            int irgen = 0;
+            int ir1 = 0;
+            int ic1 = 0;
+            int ic2 = 0;
+            int il1 = 0;
+            int realP = 0;
+            int reactP = 0;
+            int apparentP = 0;
             if (PolarRadioButton.Checked == true) 
             {
                 
@@ -193,6 +394,7 @@ namespace CircuitSolver
         private void CircuitSolver_Load(object sender, EventArgs e)
         {
             DrawImage();
+            VGenTextBox.Text = "0";
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
