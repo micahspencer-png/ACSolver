@@ -26,30 +26,30 @@ namespace CircuitSolver
         string pi = "\u03C0";
         string euler = "\u0065";
         string infinity = "\u221E";
-        int ztotal = 0;
-        int igen = 0;
-        int r1 = 0;
-        int c1 = 0;
-        int c2 = 0;
-        int l1 = 0;
-        int xc1 = 0;
-        int xc2 = 0;
-        int xl1 = 0;
-        int zl1 = 0;
-        int zeq = 0;
-        int vrgen = 0;
-        int vr1 = 0;
-        int vc1 = 0;
-        int vc2 = 0;
-        int vl1 = 0;
-        int irgen = 0;
-        int ir1 = 0;
-        int ic1 = 0;
-        int ic2 = 0;
-        int il1 = 0;
-        int realP = 0;
-        int reactP = 0;
-        int apparentP = 0;
+        string ztotal = "";
+        string igen = "";
+        string r1 = "";
+        string c1 = "";
+        string c2 = "";
+        string l1 = "";
+        string xc1 = "";
+        string xc2 = "";
+        string xl1 = "";
+        string zl1 = "";
+        string zeq = "";
+        string vrgen = "";
+        string vr1 = "";
+        string vc1 = "";
+        string vc2 = "";
+        string vl1 = "";
+        string irgen = "";
+        string ir1 = "";
+        string ic1 = "";
+        string ic2 = "";
+        string il1 = "";
+        string realP = "";
+        string reactP = "";
+        string apparentP = "";
         public CircuitSolver()
         {
             InitializeComponent();
@@ -75,6 +75,7 @@ namespace CircuitSolver
             C2ValueComboBox.SelectedIndex = 12;
             L1ValueComboBox.SelectedIndex = 2;
             RectangularRadioButton.Checked = true;
+            ResultsListBox.Items.Clear();
         }
 
         void AddItems()
@@ -356,37 +357,108 @@ namespace CircuitSolver
 
         void Math() 
         {
-            int ztotal = 0;
-            int igen = 0;
-            int r1 = 0;
-            int c1 = 0;
-            int c2 = 0;
-            int l1 = 0;
-            int xc1 = 0;
-            int xc2 = 0;
-            int xl1 = 0;
-            int zl1 = 0;
-            int zeq = 0;
-            int vrgen = 0;
-            int vr1 = 0;
-            int vc1 = 0;
-            int vc2 = 0;
-            int vl1 = 0;
-            int irgen = 0;
-            int ir1 = 0;
-            int ic1 = 0;
-            int ic2 = 0;
-            int il1 = 0;
-            int realP = 0;
-            int reactP = 0;
-            int apparentP = 0;
+            int R1 = int.Parse(R1ValueComboBox.Text);
+            int C1 = int.Parse(C1ValueComboBox.Text);
+            int C2 = int.Parse(C2ValueComboBox.Text);
+            int L1 = int.Parse(L1ValueComboBox.Text);
+            int PreR1 = R1PrefixComboBox.SelectedIndex;
+            int PreC1 = C1PrefixComboBox.SelectedIndex;
+            int PreC2 = C2PrefixComboBox.SelectedIndex;
+            int PreL1 = L1PrefixComboBox.SelectedIndex;
+            if (PreR1 == 0)
+            { 
+                PreR1 = 10^0;
+            }
+            else if (PreR1 == 1)
+            {
+                PreR1 = 10 ^ 3;
+            }
+            else if (PreR1 == 2)
+            {
+                PreR1 = 10 ^ 6;
+            }
+            if (PreC1 == 0)
+            {
+                PreC1 = 10 ^ -12;
+            }
+            else if (PreC1 == 1)
+            {
+                PreC1 = 10 ^ -6;
+            }
+            if (PreC2 == 0)
+            {
+                PreC2 = 10 ^ -12;
+            }
+            else if (PreC2 == 1)
+            {
+                PreC2 = 10 ^ -6;
+            }
+            if (PreL1 == 0)
+            {
+                PreL1 = 10 ^ -6;
+            }
+            else if (PreL1 == 1)
+            {
+                PreL1 = 10 ^ -3;
+            }
+            int RW = int.Parse(RWindingTextBox.Text);
+            int Freq = int.Parse(FrequencyTextBox.Text);
+            int RGen = RGenComboBox.SelectedIndex;
+            int V = int.Parse(VGenTextBox.Text);
+
             if (PolarRadioButton.Checked == true) 
             {
-                
+                ztotal = "1";
+                igen = "";
+                r1 = "";
+                c1 = "";
+                c2 = "";
+                l1 = "";
+                xc1 = "";
+                xc2 = "";
+                xl1 = "";
+                zl1 = "";
+                zeq = "";
+                vrgen = "";
+                vr1 = "";
+                vc1 = "";
+                vc2 = "";
+                vl1 = "";
+                irgen = "";
+                ir1 = "";
+                ic1 = "";
+                ic2 = "";
+                il1 = "";
+                realP = "";
+                reactP = "";
+                apparentP = "";
             }
             else if (RectangularRadioButton.Checked == true) 
             {
-                
+                ztotal = "0";
+                igen = "";
+                r1 = "";
+                c1 = "";
+                c2 = "";
+                l1 = "";
+                xc1 = "";
+                xc2 = "";
+                xl1 = "";
+                zl1 = "";
+                zeq = "";
+                vrgen = "";
+                vr1 = "";
+                vc1 = "";
+                vc2 = "";
+                vl1 = "";
+                irgen = "";
+                ir1 = "";
+                ic1 = "";
+                ic2 = "";
+                il1 = "";
+                realP = "";
+                reactP = "";
+                apparentP = "";
             } 
         }
 
