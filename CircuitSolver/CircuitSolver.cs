@@ -354,9 +354,55 @@ namespace CircuitSolver
             ResultsListBox.Items.Add($"Reactive Power: {reactP}");
             ResultsListBox.Items.Add($"Apparent Power: {apparentP}");
         }
+        static string ToEngineering(double value, string unit = "")
+        {
+            if (value == 0)
+                return "0 " + unit;
+
+            double abs = Math.Abs(value);
+            int exponent = (int)Math.Floor(Math.Log10(abs) / 3) * 3;
+
+            double scaled = value / Math.Pow(10, exponent);
+            string v = "";
+            string micro = "\u00B5";
+            switch (exponent)
+            {
+                case -12:
+                    v = "p";
+                    break;
+                case -9:
+                    v = "n";
+                    break;
+                case -6:
+                    v = $"{micro}";
+                    break;
+                case -3:
+                    v = "m";
+                    break;
+                case 0:
+                    v = "";
+                    break;
+                case 3:
+                    v = "k";
+                    break;
+                case 6:
+                    v = "M";
+                    break;
+                case 9:
+                    v = "G";
+                    break;
+                case 12:
+                    v = "T";
+                    break;
+            }
+            string prefix = v;
+
+            return $"{scaled:0.###} {prefix}{unit}";
+        }
 
         void CircuitMath() 
         {
+            string o = ohm;
             int R1 = int.Parse(R1ValueComboBox.Text);
             int C1 = int.Parse(C1ValueComboBox.Text);
             int C2 = int.Parse(C2ValueComboBox.Text);
@@ -371,35 +417,35 @@ namespace CircuitSolver
             }
             else if (PreR1 == 1)
             {
-                PreR1 = 1e3;
+                PreR1 = 1000;
             }
             else if (PreR1 == 2)
             {
-                PreR1 = 1e6;
+                PreR1 = 1000000;
             }
             if (PreC1 == 0)
             {
-                PreC1 = 1e-12;
+                PreC1 = 0.000000000001;
             }
             else if (PreC1 == 1)
             {
-                PreC1 = 1e-6;
+                PreC1 = 0.000001;
             }
             if (PreC2 == 0)
             {
-                PreC2 = 1e-12;
+                PreC2 = 0.000000000001;
             }
             else if (PreC2 == 1)
             {
-                PreC2 = 1e-6;
+                PreC2 = 0.000001;
             }
             if (PreL1 == 0)
             {
-                PreL1 = 1e-6;
+                PreL1 = 0.000001;
             }
             else if (PreL1 == 1)
             {
-                PreL1 = 1e-3;
+                PreL1 = 0.001;
             }
             int RW = int.Parse(RWindingTextBox.Text);
             int Freq = int.Parse(FrequencyTextBox.Text);
@@ -426,30 +472,30 @@ namespace CircuitSolver
             double Iigen = (V / zTotA) * Math.Sin(-Math.Atan2(IzTot, RzTot));
             if (PolarRadioButton.Checked == true) 
             {
-                ztotal = $"{zTotA}{ohm}{angle}{Math.Atan2(IzTot,RzTot)}";
-                igen = $"{V/zTotA}A{angle}{-Math.Atan2(IzTot, RzTot)}";
-                r1 = $"{R1*PreR1}{angle}0";
-                c1 = $"{C1*PreC1}F{angle}-45";
-                c2 = $"{C2*PreC2}F{angle}-45";
-                l1 = $"{L1*PreL1}H{angle}45";
-                xc1 = $"{XC1}{ohm}{angle}-45";
-                xc2 = $"{XC2}{ohm}{angle}-45";
-                xl1 = $"{XL1}{ohm}{angle}45";
-                zl1 = $"{Math.Sqrt(ZL1)}{ohm}{angle}{Math.Atan2(XL1,RW)}";
-                zeq = $"{Zeq}{ohm}{angle}{-AngZeqL}";
-                vrgen = $"{RGen*V / zTotA}V{angle}{-Math.Atan2(IzTot, RzTot)}";
-                vr1 = $"{R1*PreR1*V/zTotA}V{angle}{-Math.Atan2(IzTot, RzTot)}";
-                vc1 = $"{XC1*V / zTotA}V{angle}{-Math.Atan2(IzTot, RzTot)}";
-                vc2 = $"{Zeq*V / zTotA}V{angle}{-Math.Atan2(IzTot, RzTot)}";
-                vl1 = $"{Zeq*V / zTotA}V{angle}{-Math.Atan2(IzTot, RzTot)}";
-                irgen = $"{V / zTotA}A{angle}{-Math.Atan2(IzTot, RzTot)}";
-                ir1 = $"{V / zTotA}A{angle}{-Math.Atan2(IzTot, RzTot)}";
-                ic1 = $"{V / zTotA}A{angle}{-Math.Atan2(IzTot, RzTot)}";
-                ic2 = $"";
-                il1 = $"";
-                realP = $"";
-                reactP = $"";
-                apparentP = $"";
+                ztotal = $"{ToEngineering(zTotA ,o)}{angle}{Math.Atan2(IzTot,RzTot)}";
+                igen = $"{ToEngineering(V/zTotA, "A")}{angle}{-Math.Atan2(IzTot, RzTot)}";
+                r1 = $"{ToEngineering(R1*PreR1, o)}{angle}0";
+                c1 = $"{ToEngineering(C1*PreC1, "F")}{angle}-45";
+                c2 = $"{ToEngineering(C2*PreC2, "F")}{angle}-45";
+                l1 = $"{ToEngineering(L1*PreL1, "H")}{angle}45";
+                xc1 = $"{ToEngineering(XC1, o)}{angle}-45";
+                xc2 = $"{ToEngineering(XC2, o)}{angle}-45";
+                xl1 = $"{ToEngineering(XL1, o)}{angle}45";
+                zl1 = $"{ToEngineering(Math.Sqrt(ZL1), o)}{angle}{Math.Atan2(XL1,RW)}";
+                zeq = $"{ToEngineering(Zeq, o)}{angle}{-AngZeqL}";
+                vrgen = $"{ToEngineering(RGen*V/zTotA, "V")}{angle}{-Math.Atan2(IzTot, RzTot)}";
+                vr1 = $"{ToEngineering(R1*PreR1*V/zTotA, "V")}{angle}{-Math.Atan2(IzTot, RzTot)}";
+                vc1 = $"{ToEngineering(XC1*V/zTotA, "V")}{angle}{-Math.Atan2(IzTot, RzTot)}";
+                vc2 = $"{ToEngineering(Zeq*V/zTotA, "V")}{angle}{-Math.Atan2(IzTot, RzTot)}";
+                vl1 = $"{ToEngineering(Zeq*V/zTotA, "V")}{angle}{-Math.Atan2(IzTot, RzTot)}";
+                irgen = $"{ToEngineering(V/zTotA, "A")}{angle}{-Math.Atan2(IzTot, RzTot)}";
+                ir1 = $"{ToEngineering(V/zTotA, "A")}{angle}{-Math.Atan2(IzTot, RzTot)}";
+                ic1 = $"{ToEngineering(V/zTotA, "A")}{angle}{-Math.Atan2(IzTot, RzTot)}";
+                ic2 = $"{ToEngineering(zTotA, "A")}";
+                il1 = $"{ToEngineering(zTotA, "A")}";
+                realP = $"{ToEngineering(zTotA, "W")}";
+                reactP = $"{ToEngineering(zTotA, "W")}";
+                apparentP = $"{ToEngineering(zTotA, "W")}";
             }
             else if (RectangularRadioButton.Checked == true) 
             {
