@@ -327,7 +327,7 @@ namespace CircuitSolver
 
         void DisplayResults()
         {
-            Math();
+            CircuitMath();
             ResultsListBox.Items.Clear();
             ResultsListBox.Items.Add($"Z total: {ztotal}");
             ResultsListBox.Items.Add($"I Total: {igen}");
@@ -355,110 +355,128 @@ namespace CircuitSolver
             ResultsListBox.Items.Add($"Apparent Power: {apparentP}");
         }
 
-        void Math() 
+        void CircuitMath() 
         {
             int R1 = int.Parse(R1ValueComboBox.Text);
             int C1 = int.Parse(C1ValueComboBox.Text);
             int C2 = int.Parse(C2ValueComboBox.Text);
             int L1 = int.Parse(L1ValueComboBox.Text);
-            int PreR1 = R1PrefixComboBox.SelectedIndex;
-            int PreC1 = C1PrefixComboBox.SelectedIndex;
-            int PreC2 = C2PrefixComboBox.SelectedIndex;
-            int PreL1 = L1PrefixComboBox.SelectedIndex;
+            double PreR1 = R1PrefixComboBox.SelectedIndex;
+            double PreC1 = C1PrefixComboBox.SelectedIndex;
+            double PreC2 = C2PrefixComboBox.SelectedIndex;
+            double PreL1 = L1PrefixComboBox.SelectedIndex;
             if (PreR1 == 0)
             { 
-                PreR1 = 10^0;
+                PreR1 = 1;
             }
             else if (PreR1 == 1)
             {
-                PreR1 = 10 ^ 3;
+                PreR1 = 1e3;
             }
             else if (PreR1 == 2)
             {
-                PreR1 = 10 ^ 6;
+                PreR1 = 1e6;
             }
             if (PreC1 == 0)
             {
-                PreC1 = 10 ^ -12;
+                PreC1 = 1e-12;
             }
             else if (PreC1 == 1)
             {
-                PreC1 = 10 ^ -6;
+                PreC1 = 1e-6;
             }
             if (PreC2 == 0)
             {
-                PreC2 = 10 ^ -12;
+                PreC2 = 1e-12;
             }
             else if (PreC2 == 1)
             {
-                PreC2 = 10 ^ -6;
+                PreC2 = 1e-6;
             }
             if (PreL1 == 0)
             {
-                PreL1 = 10 ^ -6;
+                PreL1 = 1e-6;
             }
             else if (PreL1 == 1)
             {
-                PreL1 = 10 ^ -3;
+                PreL1 = 1e-3;
             }
             int RW = int.Parse(RWindingTextBox.Text);
             int Freq = int.Parse(FrequencyTextBox.Text);
-            int RGen = RGenComboBox.SelectedIndex;
+            int RGen = int.Parse(RGenComboBox.Text);
             int V = int.Parse(VGenTextBox.Text);
-
+            double pi = Math.PI;
+            double XC1 = 1/(2*pi*C1*PreC1*Freq);
+            double XC2 = 1/(2 * pi*C2*PreC2*Freq);
+            double XL1 = 2*pi*L1*PreL1*Freq;
+            double ZL1 = (RW*RW) + (XL1 * XL1);
+            double AngZl1 = Math.Atan2(XL1,RW);
+            double ZeqH = XC2*(Math.Sqrt(ZL1));
+            double ZeqL = (RW*RW) + (XL1 - XC2)*(XL1-XC2);
+            ZeqL = Math.Sqrt(ZeqL);
+            double Zeq = ZeqH / ZeqL;
+            double AngZeqL = Math.Atan2((XL1-XC2),RW);
+            double AngZeq = (-45 + AngZl1)-AngZeqL;
+            double RZeq = Zeq*Math.Cos(AngZeq);
+            double IZeq = Zeq*Math.Sin(AngZeq);
+            double RzTot = RGen + (R1 * PreR1) + RZeq;
+            double IzTot = XC1 + IZeq;
+            double zTotA = (RzTot*RzTot) + (IzTot*IzTot);
+            double Rigen = (V / zTotA)*Math.Cos(-Math.Atan2(IzTot, RzTot));
+            double Iigen = (V / zTotA) * Math.Sin(-Math.Atan2(IzTot, RzTot));
             if (PolarRadioButton.Checked == true) 
             {
-                ztotal = "1";
-                igen = "";
-                r1 = "";
-                c1 = "";
-                c2 = "";
-                l1 = "";
-                xc1 = "";
-                xc2 = "";
-                xl1 = "";
-                zl1 = "";
-                zeq = "";
-                vrgen = "";
-                vr1 = "";
-                vc1 = "";
-                vc2 = "";
-                vl1 = "";
-                irgen = "";
-                ir1 = "";
-                ic1 = "";
-                ic2 = "";
-                il1 = "";
-                realP = "";
-                reactP = "";
-                apparentP = "";
+                ztotal = $"{zTotA}{ohm}{angle}{Math.Atan2(IzTot,RzTot)}";
+                igen = $"{V/zTotA}A{angle}{-Math.Atan2(IzTot, RzTot)}";
+                r1 = $"{R1*PreR1}{angle}0";
+                c1 = $"{C1*PreC1}F{angle}-45";
+                c2 = $"{C2*PreC2}F{angle}-45";
+                l1 = $"{L1*PreL1}H{angle}45";
+                xc1 = $"{XC1}{ohm}{angle}-45";
+                xc2 = $"{XC2}{ohm}{angle}-45";
+                xl1 = $"{XL1}{ohm}{angle}45";
+                zl1 = $"{Math.Sqrt(ZL1)}{ohm}{angle}{Math.Atan2(XL1,RW)}";
+                zeq = $"{Zeq}{ohm}{angle}{-AngZeqL}";
+                vrgen = $"{RGen*V / zTotA}V{angle}{-Math.Atan2(IzTot, RzTot)}";
+                vr1 = $"{R1*PreR1*V/zTotA}V{angle}{-Math.Atan2(IzTot, RzTot)}";
+                vc1 = $"{XC1*V / zTotA}V{angle}{-Math.Atan2(IzTot, RzTot)}";
+                vc2 = $"{Zeq*V / zTotA}V{angle}{-Math.Atan2(IzTot, RzTot)}";
+                vl1 = $"{Zeq*V / zTotA}V{angle}{-Math.Atan2(IzTot, RzTot)}";
+                irgen = $"{V / zTotA}A{angle}{-Math.Atan2(IzTot, RzTot)}";
+                ir1 = $"{V / zTotA}A{angle}{-Math.Atan2(IzTot, RzTot)}";
+                ic1 = $"{V / zTotA}A{angle}{-Math.Atan2(IzTot, RzTot)}";
+                ic2 = $"";
+                il1 = $"";
+                realP = $"";
+                reactP = $"";
+                apparentP = $"";
             }
             else if (RectangularRadioButton.Checked == true) 
             {
-                ztotal = "0";
-                igen = "";
-                r1 = "";
-                c1 = "";
-                c2 = "";
-                l1 = "";
-                xc1 = "";
-                xc2 = "";
-                xl1 = "";
-                zl1 = "";
-                zeq = "";
-                vrgen = "";
-                vr1 = "";
-                vc1 = "";
-                vc2 = "";
-                vl1 = "";
-                irgen = "";
-                ir1 = "";
-                ic1 = "";
-                ic2 = "";
-                il1 = "";
-                realP = "";
-                reactP = "";
-                apparentP = "";
+                ztotal = $"{RzTot}+j{IzTot}";
+                igen = $"{Rigen}+j{Iigen}";
+                r1 = $"{R1*PreR1}{ohm}+j0";
+                c1 = $"0-j{C1*PreC1}F";
+                c2 = $"0-j{C2*PreC2}F";
+                l1 = $"0+j{L1*PreL1}H";
+                xc1 = $"0-j{XC1}{ohm}";
+                xc2 = $"0-j{XC2}{ohm}";
+                xl1 = $"0+j{XL1}{ohm}";
+                zl1 = $"{RW}+j{XL1}{ohm}";
+                zeq = $"{RZeq}+{IZeq}";
+                vrgen = $"{RGen*Rigen}+j{Iigen}";
+                vr1 = $"{R1*PreR1*Rigen}+j{Iigen}";
+                vc1 = $"{Rigen} +j {XC1*Iigen}";
+                vc2 = $"{RZeq*Rigen} +j{IZeq*Iigen}";
+                vl1 = $"{RZeq*Rigen} +j{IZeq*Iigen}";
+                irgen = $"{Rigen} +j {Iigen}";
+                ir1 = $"{Rigen}+j{Iigen}";
+                ic1 = $"{Rigen}+j{Iigen}";
+                ic2 = $"";
+                il1 = $"";
+                realP = $"";
+                reactP = $"";
+                apparentP = $"";
             } 
         }
 
