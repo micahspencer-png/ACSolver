@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ImagePictureBox = new System.Windows.Forms.PictureBox();
             this.VGenTrackBar = new System.Windows.Forms.TrackBar();
             this.ExitButton = new System.Windows.Forms.Button();
@@ -58,6 +59,7 @@
             this.RWindingTextBox = new System.Windows.Forms.TextBox();
             this.RWindinglabel2 = new System.Windows.Forms.Label();
             this.Frequencylabel2 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ImagePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VGenTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -69,13 +71,15 @@
             this.ImagePictureBox.Size = new System.Drawing.Size(713, 354);
             this.ImagePictureBox.TabIndex = 0;
             this.ImagePictureBox.TabStop = false;
+            this.toolTip1.SetToolTip(this.ImagePictureBox, "Shows The Circuit This Programs Solves");
             // 
             // VGenTrackBar
             // 
             this.VGenTrackBar.Location = new System.Drawing.Point(12, 381);
             this.VGenTrackBar.Name = "VGenTrackBar";
             this.VGenTrackBar.Size = new System.Drawing.Size(286, 56);
-            this.VGenTrackBar.TabIndex = 1;
+            this.VGenTrackBar.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.VGenTrackBar, "Slide Bar for Voltage");
             this.VGenTrackBar.Scroll += new System.EventHandler(this.VGenTrackBar_Scroll);
             // 
             // ExitButton
@@ -83,8 +87,9 @@
             this.ExitButton.Location = new System.Drawing.Point(572, 522);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(68, 50);
-            this.ExitButton.TabIndex = 2;
+            this.ExitButton.TabIndex = 0;
             this.ExitButton.Text = "E&xit";
+            this.toolTip1.SetToolTip(this.ExitButton, "Closes the Program");
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
@@ -93,8 +98,9 @@
             this.SolveButton.Location = new System.Drawing.Point(646, 523);
             this.SolveButton.Name = "SolveButton";
             this.SolveButton.Size = new System.Drawing.Size(85, 50);
-            this.SolveButton.TabIndex = 2;
+            this.SolveButton.TabIndex = 1;
             this.SolveButton.Text = "&Solve";
+            this.toolTip1.SetToolTip(this.SolveButton, "Calculates Values When all Inputs are Filled");
             this.SolveButton.UseVisualStyleBackColor = true;
             this.SolveButton.Click += new System.EventHandler(this.SolveButton_Click);
             // 
@@ -105,6 +111,7 @@
             this.ClearButton.Size = new System.Drawing.Size(89, 50);
             this.ClearButton.TabIndex = 2;
             this.ClearButton.Text = "&Clear";
+            this.toolTip1.SetToolTip(this.ClearButton, "Clears the Results Box and Sets Default Values");
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
@@ -115,6 +122,7 @@
             this.VGenTextBox.Name = "VGenTextBox";
             this.VGenTextBox.Size = new System.Drawing.Size(64, 30);
             this.VGenTextBox.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.VGenTextBox, "Sets the Voltage");
             this.VGenTextBox.TextChanged += new System.EventHandler(this.VGenTextBox_TextChanged);
             // 
             // FrequencyTextBox
@@ -123,7 +131,8 @@
             this.FrequencyTextBox.Location = new System.Drawing.Point(118, 534);
             this.FrequencyTextBox.Name = "FrequencyTextBox";
             this.FrequencyTextBox.Size = new System.Drawing.Size(126, 30);
-            this.FrequencyTextBox.TabIndex = 3;
+            this.FrequencyTextBox.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.FrequencyTextBox, "Sets the Generator Frequency");
             this.FrequencyTextBox.TextChanged += new System.EventHandler(this.FrequencyTextBox_TextChanged);
             // 
             // VGenLabel
@@ -153,7 +162,8 @@
             this.RGenComboBox.Location = new System.Drawing.Point(91, 489);
             this.RGenComboBox.Name = "RGenComboBox";
             this.RGenComboBox.Size = new System.Drawing.Size(64, 33);
-            this.RGenComboBox.TabIndex = 5;
+            this.RGenComboBox.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.RGenComboBox, "Sets the Generator Resistance");
             // 
             // RGenLabel
             // 
@@ -172,7 +182,8 @@
             this.R1ValueComboBox.Location = new System.Drawing.Point(346, 412);
             this.R1ValueComboBox.Name = "R1ValueComboBox";
             this.R1ValueComboBox.Size = new System.Drawing.Size(145, 33);
-            this.R1ValueComboBox.TabIndex = 5;
+            this.R1ValueComboBox.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.R1ValueComboBox, "Sets R1 Value");
             // 
             // C1ValueComboBox
             // 
@@ -181,7 +192,8 @@
             this.C1ValueComboBox.Location = new System.Drawing.Point(346, 451);
             this.C1ValueComboBox.Name = "C1ValueComboBox";
             this.C1ValueComboBox.Size = new System.Drawing.Size(145, 33);
-            this.C1ValueComboBox.TabIndex = 5;
+            this.C1ValueComboBox.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.C1ValueComboBox, "Sets C1 Value");
             // 
             // C2ValueComboBox
             // 
@@ -190,7 +202,8 @@
             this.C2ValueComboBox.Location = new System.Drawing.Point(346, 490);
             this.C2ValueComboBox.Name = "C2ValueComboBox";
             this.C2ValueComboBox.Size = new System.Drawing.Size(145, 33);
-            this.C2ValueComboBox.TabIndex = 5;
+            this.C2ValueComboBox.TabIndex = 10;
+            this.toolTip1.SetToolTip(this.C2ValueComboBox, "Sets C2 Value");
             // 
             // L1ValueComboBox
             // 
@@ -199,7 +212,8 @@
             this.L1ValueComboBox.Location = new System.Drawing.Point(346, 529);
             this.L1ValueComboBox.Name = "L1ValueComboBox";
             this.L1ValueComboBox.Size = new System.Drawing.Size(145, 33);
-            this.L1ValueComboBox.TabIndex = 5;
+            this.L1ValueComboBox.TabIndex = 12;
+            this.toolTip1.SetToolTip(this.L1ValueComboBox, "Sets L1 Value");
             // 
             // R1PrefixComboBox
             // 
@@ -208,7 +222,8 @@
             this.R1PrefixComboBox.Location = new System.Drawing.Point(497, 412);
             this.R1PrefixComboBox.Name = "R1PrefixComboBox";
             this.R1PrefixComboBox.Size = new System.Drawing.Size(68, 33);
-            this.R1PrefixComboBox.TabIndex = 5;
+            this.R1PrefixComboBox.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.R1PrefixComboBox, "Sets R1 Prefix");
             // 
             // C1PrefixComboBox
             // 
@@ -217,7 +232,8 @@
             this.C1PrefixComboBox.Location = new System.Drawing.Point(497, 451);
             this.C1PrefixComboBox.Name = "C1PrefixComboBox";
             this.C1PrefixComboBox.Size = new System.Drawing.Size(68, 33);
-            this.C1PrefixComboBox.TabIndex = 5;
+            this.C1PrefixComboBox.TabIndex = 9;
+            this.toolTip1.SetToolTip(this.C1PrefixComboBox, "Sets C1 Prefix");
             // 
             // C2PrefixComboBox
             // 
@@ -226,7 +242,8 @@
             this.C2PrefixComboBox.Location = new System.Drawing.Point(497, 490);
             this.C2PrefixComboBox.Name = "C2PrefixComboBox";
             this.C2PrefixComboBox.Size = new System.Drawing.Size(68, 33);
-            this.C2PrefixComboBox.TabIndex = 5;
+            this.C2PrefixComboBox.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.C2PrefixComboBox, "Sets C2 Prefix");
             // 
             // L1PrefixComboBox
             // 
@@ -235,7 +252,8 @@
             this.L1PrefixComboBox.Location = new System.Drawing.Point(497, 529);
             this.L1PrefixComboBox.Name = "L1PrefixComboBox";
             this.L1PrefixComboBox.Size = new System.Drawing.Size(68, 33);
-            this.L1PrefixComboBox.TabIndex = 5;
+            this.L1PrefixComboBox.TabIndex = 13;
+            this.toolTip1.SetToolTip(this.L1PrefixComboBox, "Sets L1 Prefix");
             // 
             // R1Label
             // 
@@ -284,9 +302,10 @@
             this.PolarRadioButton.Location = new System.Drawing.Point(610, 456);
             this.PolarRadioButton.Name = "PolarRadioButton";
             this.PolarRadioButton.Size = new System.Drawing.Size(78, 29);
-            this.PolarRadioButton.TabIndex = 6;
+            this.PolarRadioButton.TabIndex = 15;
             this.PolarRadioButton.TabStop = true;
             this.PolarRadioButton.Text = "Polar";
+            this.toolTip1.SetToolTip(this.PolarRadioButton, "Sets Display to Polar Format");
             this.PolarRadioButton.UseVisualStyleBackColor = true;
             // 
             // RectangularRadioButton
@@ -296,9 +315,10 @@
             this.RectangularRadioButton.Location = new System.Drawing.Point(610, 482);
             this.RectangularRadioButton.Name = "RectangularRadioButton";
             this.RectangularRadioButton.Size = new System.Drawing.Size(137, 29);
-            this.RectangularRadioButton.TabIndex = 7;
+            this.RectangularRadioButton.TabIndex = 16;
             this.RectangularRadioButton.TabStop = true;
             this.RectangularRadioButton.Text = "Rectangular";
+            this.toolTip1.SetToolTip(this.RectangularRadioButton, "Sets Display to Rectangular Format");
             this.RectangularRadioButton.UseVisualStyleBackColor = true;
             // 
             // ResultsListBox
@@ -309,7 +329,8 @@
             this.ResultsListBox.Location = new System.Drawing.Point(832, 19);
             this.ResultsListBox.Name = "ResultsListBox";
             this.ResultsListBox.Size = new System.Drawing.Size(425, 554);
-            this.ResultsListBox.TabIndex = 8;
+            this.ResultsListBox.TabIndex = 17;
+            this.toolTip1.SetToolTip(this.ResultsListBox, "Shows the Values");
             // 
             // RWindingLabel
             // 
@@ -327,7 +348,8 @@
             this.RWindingTextBox.Location = new System.Drawing.Point(689, 415);
             this.RWindingTextBox.Name = "RWindingTextBox";
             this.RWindingTextBox.Size = new System.Drawing.Size(86, 30);
-            this.RWindingTextBox.TabIndex = 9;
+            this.RWindingTextBox.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.RWindingTextBox, "Sets L1 Winding Resistance");
             this.RWindingTextBox.TextChanged += new System.EventHandler(this.RWindingTextBox_TextChanged);
             // 
             // RWindinglabel2
@@ -431,6 +453,7 @@
         private System.Windows.Forms.TextBox RWindingTextBox;
         private System.Windows.Forms.Label RWindinglabel2;
         private System.Windows.Forms.Label Frequencylabel2;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
