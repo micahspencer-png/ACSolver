@@ -403,9 +403,9 @@ namespace CircuitSolver
         void CircuitMath() 
         {
             string o = ohm;
-            int R1 = int.Parse(R1ValueComboBox.Text);
-            int C1 = int.Parse(C1ValueComboBox.Text);
-            int C2 = int.Parse(C2ValueComboBox.Text);
+            double R1 = double.Parse(R1ValueComboBox.Text);
+            double C1 = double.Parse(C1ValueComboBox.Text);
+            double C2 = double.Parse(C2ValueComboBox.Text);
             int L1 = int.Parse(L1ValueComboBox.Text);
             double PreR1 = R1PrefixComboBox.SelectedIndex;
             double PreC1 = C1PrefixComboBox.SelectedIndex;
@@ -469,8 +469,12 @@ namespace CircuitSolver
             double IzTot = -XC1 + IZeq;
             double zTotA = (RzTot*RzTot) + (IzTot*IzTot);
             zTotA = Math.Sqrt(zTotA);
-            double Rigen = (V / zTotA)*Math.Cos(-Math.Atan2(IzTot, RzTot));
-            double Iigen = (V / zTotA) * Math.Sin(-Math.Atan2(IzTot, RzTot));
+            double Rigen0 = (V / zTotA)*Math.Cos(-Math.Atan2(IzTot, RzTot));
+            double Iigen0 = (V / zTotA) * Math.Sin(-Math.Atan2(IzTot, RzTot));
+            double Rigen1 = (V / zTotA) * Math.Cos(-45-Math.Atan2(IzTot, RzTot));
+            double Iigen1 = (V / zTotA) * Math.Sin(-45-Math.Atan2(IzTot, RzTot));
+            double Rigen2 = (V / zTotA) * Math.Cos(-Math.Atan2(IzTot, RzTot)-AngZeq);
+            double Iigen2 = (V / zTotA) * Math.Sin(-Math.Atan2(IzTot, RzTot)-AngZeq);
             if (PolarRadioButton.Checked == true) 
             {
                 ztotal = $"{ToEngineering(zTotA ,o)}{angle}{Math.Round(Math.Atan2(IzTot,RzTot) * 180 / pi, 3)}";
@@ -500,30 +504,30 @@ namespace CircuitSolver
             }
             else if (RectangularRadioButton.Checked == true) 
             {
-                ztotal = $"{RzTot}+j{IzTot}";
-                igen = $"{Rigen}+j{Iigen}";
-                r1 = $"{R1*PreR1}{ohm}+j0";
-                c1 = $"0-j{C1*PreC1}F";
-                c2 = $"0-j{C2*PreC2}F";
-                l1 = $"0+j{L1*PreL1}H";
-                xc1 = $"0-j{XC1}{ohm}";
-                xc2 = $"0-j{XC2}{ohm}";
-                xl1 = $"0+j{XL1}{ohm}";
-                zl1 = $"{RW}+j{XL1}{ohm}";
-                zeq = $"{RZeq}+{IZeq}";
-                vrgen = $"{RGen*Rigen}+j{Iigen}";
-                vr1 = $"{R1*PreR1*Rigen}+j{Iigen}";
-                vc1 = $"{Rigen} +j {XC1*Iigen}";
-                vc2 = $"{RZeq*Rigen} +j{IZeq*Iigen}";
-                vl1 = $"{RZeq*Rigen} +j{IZeq*Iigen}";
-                irgen = $"{Rigen} +j {Iigen}";
-                ir1 = $"{Rigen}+j{Iigen}";
-                ic1 = $"{Rigen}+j{Iigen}";
-                ic2 = $"";
-                il1 = $"";
-                realP = $"";
-                reactP = $"";
-                apparentP = $"";
+                ztotal = $"{ToEngineering(RzTot, "")}+j{ToEngineering(IzTot, "")}";
+                igen = $"{ToEngineering(Rigen0, "")}+j{ToEngineering(Iigen0, "")}";
+                r1 = $"{ToEngineering(R1 * PreR1, o)}+j0";
+                c1 = $"0-j{ToEngineering(C1 * PreC1, "F")}";
+                c2 = $"0-j{ToEngineering(C2 * PreC2, "F")}";
+                l1 = $"{RW}+j{ToEngineering(L1 * PreL1, "H")}";
+                xc1 = $"0-j{ToEngineering(XC1, o)}";
+                xc2 = $"0-j{ToEngineering(XC2, o)}";
+                xl1 = $"0+j{ToEngineering(XL1, o)}";
+                zl1 = $"{RW}+j{ToEngineering(XL1, o)}";
+                zeq = $"{ToEngineering(RZeq, o)}+j{ToEngineering(IZeq, "o")}";
+                vrgen = $"{ToEngineering(RGen * Rigen0, "V")}+j{ToEngineering(RGen*Iigen0, "V")}";
+                vr1 = $"{ToEngineering(R1 * PreR1 * Rigen0, "V")}+j{ToEngineering(R1*PreR1*Iigen0, "V")}";
+                vc1 = $"{ToEngineering(XC1*Rigen1, "V")}+j{ToEngineering(XC1*Iigen1, "V")}";
+                vc2 = $"{ToEngineering(RZeq * Rigen1, "V")}+j{ToEngineering(IZeq*Iigen1, "V")}";
+                vl1 = $"{ToEngineering(RZeq * Rigen2, "V")}+j{ToEngineering(IZeq*Iigen2, "V")}";
+                irgen = $"{ToEngineering(Rigen0, "A")}+j{ToEngineering(Iigen0, "A")}";
+                ir1 = $"{ToEngineering(V / zTotA, "A")}+j{ToEngineering(zTotA, "A")}";
+                ic1 = $"{ToEngineering(V / zTotA, "A")}+j{ToEngineering(zTotA, "A")}";
+                ic2 = $"{ToEngineering(Zeq * V / zTotA / XC2, "A")}+j{ToEngineering(zTotA, "A")}";
+                il1 = $"{ToEngineering(Zeq * V / zTotA / ZL1, "A")}+j{ToEngineering(zTotA, "A")}";
+                realP = $"{ToEngineering(V / zTotA * V / zTotA * RzTot, "W")}";
+                reactP = $"{ToEngineering(V / zTotA * V / zTotA * IzTot, "VAR")}";
+                apparentP = $"{ToEngineering(V * V / zTotA, "VA")}";
             } 
         }
 

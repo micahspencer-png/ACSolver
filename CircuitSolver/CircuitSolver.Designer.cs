@@ -80,9 +80,9 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(590, 521);
+            this.ExitButton.Location = new System.Drawing.Point(572, 522);
             this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(84, 50);
+            this.ExitButton.Size = new System.Drawing.Size(68, 50);
             this.ExitButton.TabIndex = 2;
             this.ExitButton.Text = "E&xit";
             this.ExitButton.UseVisualStyleBackColor = true;
@@ -90,9 +90,9 @@
             // 
             // SolveButton
             // 
-            this.SolveButton.Location = new System.Drawing.Point(680, 521);
+            this.SolveButton.Location = new System.Drawing.Point(646, 523);
             this.SolveButton.Name = "SolveButton";
-            this.SolveButton.Size = new System.Drawing.Size(95, 50);
+            this.SolveButton.Size = new System.Drawing.Size(85, 50);
             this.SolveButton.TabIndex = 2;
             this.SolveButton.Text = "&Solve";
             this.SolveButton.UseVisualStyleBackColor = true;
@@ -100,9 +100,9 @@
             // 
             // ClearButton
             // 
-            this.ClearButton.Location = new System.Drawing.Point(781, 522);
+            this.ClearButton.Location = new System.Drawing.Point(737, 523);
             this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(101, 50);
+            this.ClearButton.Size = new System.Drawing.Size(89, 50);
             this.ClearButton.TabIndex = 2;
             this.ClearButton.Text = "&Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
@@ -306,9 +306,9 @@
             this.ResultsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ResultsListBox.FormattingEnabled = true;
             this.ResultsListBox.ItemHeight = 25;
-            this.ResultsListBox.Location = new System.Drawing.Point(832, 27);
+            this.ResultsListBox.Location = new System.Drawing.Point(832, 19);
             this.ResultsListBox.Name = "ResultsListBox";
-            this.ResultsListBox.Size = new System.Drawing.Size(395, 429);
+            this.ResultsListBox.Size = new System.Drawing.Size(395, 554);
             this.ResultsListBox.TabIndex = 8;
             // 
             // RWindingLabel
