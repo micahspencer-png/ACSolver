@@ -471,12 +471,13 @@ namespace CircuitSolver
             double IzTot = -XC1 + IZeq;
             double zTotA = (RzTot*RzTot) + (IzTot*IzTot);
             zTotA = Math.Sqrt(zTotA);
+            double test = (-Math.Atan2(IzTot, RzTot) + AngZeq)*180/pi;
             double Rigen0 = (V / zTotA) * Math.Cos(-Math.Atan2(IzTot, RzTot));
             double Iigen0 = (V / zTotA) * Math.Sin(-Math.Atan2(IzTot, RzTot));
-            double Rigen1 = (V / zTotA) * Math.Cos(-Math.Atan2(IzTot, RzTot));
-            double Iigen1 = (V / zTotA) * Math.Sin(-Math.Atan2(IzTot, RzTot));
-            double Rigen2 = (V / zTotA) * Math.Cos(-Math.Atan2(IzTot, RzTot)-AngZeq);
-            double Iigen2 = (V / zTotA) * Math.Sin(-Math.Atan2(IzTot, RzTot)-AngZeq);
+            double Rigen1 = (V / zTotA) * Math.Cos(-Math.Atan2(IzTot, RzTot)-(pi/180*45));
+            double Iigen1 = (V / zTotA) * Math.Sin(-Math.Atan2(IzTot, RzTot)-(pi/180*45));
+            double Rigen2 = (V / zTotA) * Math.Cos(((-Math.Atan2(IzTot, RzTot)-AngZeq)*180/pi));
+            double Iigen2 = (V / zTotA) * Math.Sin(((-Math.Atan2(IzTot, RzTot)-AngZeq)*180/pi));
             if (PolarRadioButton.Checked == true) 
             {
                 ztotal = $"{ToEngineering(zTotA ,o)}{angle}{Math.Round(Math.Atan2(IzTot,RzTot) * 180 / pi, 3)}";
