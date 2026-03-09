@@ -308,7 +308,7 @@
             this.ResultsListBox.ItemHeight = 25;
             this.ResultsListBox.Location = new System.Drawing.Point(832, 19);
             this.ResultsListBox.Name = "ResultsListBox";
-            this.ResultsListBox.Size = new System.Drawing.Size(395, 554);
+            this.ResultsListBox.Size = new System.Drawing.Size(425, 554);
             this.ResultsListBox.TabIndex = 8;
             // 
             // RWindingLabel
