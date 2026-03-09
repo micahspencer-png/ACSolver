@@ -476,8 +476,8 @@ namespace CircuitSolver
             double Iigen0 = (V / zTotA) * Math.Sin(-Math.Atan2(IzTot, RzTot));
             double Rigen1 = (V / zTotA) * Math.Cos(-Math.Atan2(IzTot, RzTot)-(pi/180*45));
             double Iigen1 = (V / zTotA) * Math.Sin(-Math.Atan2(IzTot, RzTot)-(pi/180*45));
-            double Rigen2 = (V / zTotA) * Math.Cos(((-Math.Atan2(IzTot, RzTot)-AngZeq)*180/pi));
-            double Iigen2 = (V / zTotA) * Math.Sin(((-Math.Atan2(IzTot, RzTot)-AngZeq)*180/pi));
+            double Rigen2 = (V / zTotA) * Math.Cos(-Math.Atan2(IzTot, RzTot)+(pi/180*AngZeq));
+            double Iigen2 = (V / zTotA) * Math.Sin(-Math.Atan2(IzTot, RzTot)+(pi/180*AngZeq));
             if (PolarRadioButton.Checked == true) 
             {
                 ztotal = $"{ToEngineering(zTotA ,o)}{angle}{Math.Round(Math.Atan2(IzTot,RzTot) * 180 / pi, 3)}";
@@ -521,8 +521,8 @@ namespace CircuitSolver
                 vrgen = $"{ToEngineering(RGen * Rigen0, "V")}+j{ToEngineering(RGen*Iigen0, "V")}";
                 vr1 = $"{ToEngineering(R1 * PreR1 * Rigen0, "V")}+j{ToEngineering(R1*PreR1*Iigen0, "V")}";
                 vc1 = $"{ToEngineering(XC1*Rigen1, "V")}+j{ToEngineering(-XC1*Iigen1, "V")}";
-                vc2 = $"{ToEngineering(RZeq * Rigen2, "V")}+j{ToEngineering(IZeq*Iigen2, "V")}";
-                vl1 = $"{ToEngineering(RZeq * Rigen2, "V")}+j{ToEngineering(IZeq*Iigen2, "V")}";
+                vc2 = $"{ToEngineering(RZeq * Rigen2-IZeq*Iigen2, "V")}+j{ToEngineering(RZeq * Rigen2 + IZeq * Iigen2, "V")}";
+                vl1 = $"{ToEngineering(RZeq * Rigen2 - IZeq * Iigen2, "V")}+j{ToEngineering(RZeq * Rigen2 + IZeq * Iigen2, "V")}";
                 irgen = $"{ToEngineering(Rigen0, "A")}+j{ToEngineering(Iigen0, "A")}";
                 ir1 = $"{ToEngineering(Rigen0, "A")}+j{ToEngineering(Iigen0, "A")}";
                 ic1 = $"{ToEngineering(Rigen0, "A")}+j{ToEngineering(Iigen0, "A")}";
