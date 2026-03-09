@@ -506,7 +506,7 @@ namespace CircuitSolver
                 apparentP = $"{ToEngineering(V*V/zTotA, "VA")} {angle}{Math.Round(-Math.Atan2(IzTot, RzTot) * 180 / pi, 3)}";
             }
             else if (RectangularRadioButton.Checked == true) 
-            {
+            { 
                 ztotal = $"{ToEngineering(RzTot, "")} +j {ToEngineering(IzTot, "")}";
                 igen = $"{ToEngineering(Rigen0, "")} +j {ToEngineering(Iigen0, "")}";
                 r1 = $"{ToEngineering(R1 * PreR1, o)} +j 0";
